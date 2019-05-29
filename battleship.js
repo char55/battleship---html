@@ -48,12 +48,12 @@ var model = {
     var locations;
     for (var i = 0; i < this.numberShips; i++) {
       do {
-        location = this.generateShip()
-      } while (this.collision(location));
-      this.ships[i].locations = location;
+        locations = this.generateShip();
+      } while (this.collision(locations));
+      this.ships[i].locations = locations;
     }
-    // console.log("Ships array: ");
-    // console.log(this.ships);
+    console.log("Ships array: ");
+    console.log(this.ships);
   },
 
   generateShip: function() {
@@ -79,11 +79,11 @@ var model = {
     return newShipLocation;
   },
 
-  collisions: function(locations) {
+  collision: function(locations) {
     for (var i = 0; i < this.numberShips; i++) {
-      var shpis = this.ships[i];
+      var ship = this.ships[i];
       for (var j = 0; j < locations.length; j++) {
-        if(ship.location.IndexOf(locations[j]) >= 0){
+        if(ship.location.indexOf(locations[j]) >= 0){
           return true;
         }
       }
