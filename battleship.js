@@ -5,21 +5,20 @@ var model = {
   shipsSunk: 0,
 
   ships: [
-    { location: [0,0,0], hits: ["", "", ""] },
-    { location: [0,0,0], hits: ["", "", ""] },
-    { location: [0,0,0], hits: ["", "", ""] },
+    { location:  ["", "", ""], hits: ["", "", ""] },
+    { location:  ["", "", ""], hits: ["", "", ""] },
+    { location:  ["", "", ""], hits: ["", "", ""] },
   ],
 
   fire: function(guess) {
     for (var i = 0; i < this.numberShips; i++) {
-      var ships = this.ships[i];
-      var index = ships.location.indexOf(guess);
-
-      if(ships.hits[index] === "hit") {
+      var ship = this.ships[i];
+      var index = ship.location.indexOf(guess);
+      if(ship.hits[index] === "hit") {
         view.displayMessage("You have already hit this location");
         return true;
       } else if (index >= 0) {
-        ships.hits[index] = "hit";
+        ship.hits[index] = "hit";
         view.displayHit(guess);
         view.displayMessage("HIT");
 
@@ -50,7 +49,7 @@ var model = {
       do {
         locations = this.generateShip();
       } while (this.collision(locations));
-      this.ships[i].locations = locations;
+      this.ships[i].location = locations;
     }
     console.log("Ships array: ");
     console.log(this.ships);
@@ -128,7 +127,6 @@ var controller = {
 
 function parseGuess(guess) {
   var alphabet = ["A", "B", "C", "D", "E", "F", "G"];
-
   if(guess === null || guess.length !== 2) {
     alert("Please enter a valid guess.  Must be a letter and number.");
   } else {
@@ -174,7 +172,6 @@ function init() {
   guessInput.onkeypress = handleKeyPress;
 
   model.generateShipLocation();
-
 }
 
 window.onload = init;

@@ -83,8 +83,8 @@
     </table>
 
     <form>
-      <input type="text" id="guessInput" placeholder="A0">
-      <input type="button" id="fireButton" value="Fire!">
+      <input type="text" id="guessInput" placeholder="A0" onkeypress="handleKeyPress(event)">
+      <input type="button" id="fireButton" value="Fire!" onclick="handleFireButton()" >
     </form>
 
   </div>
